@@ -125,7 +125,7 @@ builder.Services.AddAuthentication(options =>
 | Render / Azure / Railway         | Free hosting with HTTPS                        |
 | ChatGPT (GPT-5)                 | Code generation, UI & documentation assistance |
 | GitHub                          | Source control & deployment                    |
-
+| BlackBox AI                     | for UI design                                  |
 
 
 🧑‍💻 Author
