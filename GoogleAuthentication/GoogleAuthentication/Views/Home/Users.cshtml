@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "Users";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="container mt-5">
+    <div class="text-end mt-4">
+        <h2 class="text-center mb-4">User List</h2>
+        <a href="LoginHistory" class="btn btn-outline-primary btn-sm">User Login History</a>
+    </div>
+
+    <div class="card shadow-lg p-4">
+        <!-- Responsive Table -->
+        <div class="table-responsive">
+            <table class="table table-striped align-middle text-nowrap">
+                <thead class="table-light">
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Provider</th>
+                        <th>Last Login</th>
+                        <th>Created On</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model)
+                    {
+                        <tr>
+                            <td>@user.Name</td>
+                            <td>@user.Email</td>
+                            <td>@user.Provider</td>
+                            <td>@user.LoginTime.ToString("dd-MMM-yyyy HH:mm")</td>
+                            <td>@user.CreatedOn.ToString("dd-MMM-yyyy HH:mm")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="text-end mt-4">
+            <a href="index" class="btn btn-outline-primary btn-sm">⬅ Back to Dashboard</a>
+        </div>
+    </div>
+</div>
+
+

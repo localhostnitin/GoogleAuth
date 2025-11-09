@@ -1,0 +1,48 @@
+﻿@model GoogleAuthentication.Models.Medicine
+@{
+    ViewData["Title"] = Model.MedicineId == 0 ? "Add Medicine" : "Edit Medicine";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container mt-5">
+    <div class="card shadow-lg p-4">
+        <h2 class ="text-center mb-4">@ViewData["Title"]</h2>
+        <form asp-action="AddEditMedicine" method="post">
+            <input type="hidden" asp-for="MedicineId" />
+
+            <div class="form-group mb-2">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-2">
+                <label asp-for="Company"></label>
+                <input asp-for="Company" class="form-control" />
+                <span asp-validation-for="Company" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-2">
+                <label asp-for="Price"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-2">
+                <label asp-for="ExpiryDate"></label>
+                <input asp-for="ExpiryDate" type="date" class="form-control" />
+                <span asp-validation-for="ExpiryDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Stock"></label>
+                <input asp-for="Stock" class="form-control" />
+                <span asp-validation-for="Stock" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">@(Model.MedicineId == 0 ? "Add" : "Update")</button>
+            <a asp-action="Medicines" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>

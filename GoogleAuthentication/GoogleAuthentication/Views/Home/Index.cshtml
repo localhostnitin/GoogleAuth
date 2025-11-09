@@ -1,0 +1,86 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+    var userName = ViewBag.Name as string ?? "Guest";
+    var userEmail = ViewBag.Email as string ?? "Not available";
+}
+
+<style>
+    .user-container {
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .user-card {
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+        width: 100%;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+        .user-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .user-card h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #007bff;
+            font-weight: 600;
+        }
+
+    .user-detail p {
+        font-size: 16px;
+        margin: 8px 0;
+        word-break: break-word;
+    }
+
+    .welcome-msg {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 18px;
+        color: #333;
+        font-weight: 500;
+    }
+
+    /* Responsive adjustments */
+    @@media (max-width: 576px) {
+        .user-card
+
+    {
+        padding: 15px;
+        max-width: 100%;
+    }
+
+    .user-card h3 {
+        font-size: 20px;
+    }
+
+    .user-detail p {
+        font-size: 15px;
+    }
+
+    .welcome-msg {
+        font-size: 16px;
+    }
+
+    }
+</style>
+
+<div class="user-container">
+    <div class="user-card">
+        <h3>👤 User Details</h3>
+        <div class="user-detail">
+            <p><strong>Name:</strong> @userName</p>
+            <p><strong>Email:</strong> @userEmail</p>
+            <p><strong>Provider:</strong> Google</p>
+        </div>
+    </div>
+</div>
+
+<p class="welcome-msg">Welcome @userName, you are successfully logged in!</p>

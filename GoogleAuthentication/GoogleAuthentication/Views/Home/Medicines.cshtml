@@ -1,0 +1,90 @@
+﻿@{
+    ViewData["Title"] = "Medicines";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    @@media (max-width: 576px) {
+        form .d-flex input
+
+    {
+        width: 100% !important;
+    }
+
+    form.d-flex {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    }
+</style>
+<div class="container mt-5">
+    <div class="card shadow-lg p-4">
+        <h2 class="text-center mb-4">Medicines</h2>
+        <form method="get" asp-action="Medicines" class="d-flex flex-wrap justify-content-center align-items-center gap-2">
+            <input type="text" name="search" value="@ViewBag.Search" placeholder="Search..." class="form-control" style="max-width: 300px;" />
+            <button type="submit" class="btn btn-primary btn-sm">Search</button>
+            <a asp-action="AddEditMedicine" class="btn btn-success btn-sm">Add New</a>
+        </form>
+
+        <!-- Responsive Table -->
+        <div class="table-responsive mt-3">
+            <table class="table table-striped align-middle text-nowrap">
+                <thead class="table-light">
+                    <tr>
+                        <th>
+                            <a asp-action="Medicines"
+                               asp-route-sortOrder="@ViewBag.NameSort"
+                               asp-route-search="@ViewBag.Search"
+                               asp-route-page="1">Name</a>
+                        </th>
+                        <th>Company</th>
+                        <th>
+                            <a asp-action="Medicines"
+                               asp-route-sortOrder="@ViewBag.PriceSort"
+                               asp-route-search="@ViewBag.Search"
+                               asp-route-page="1">Price</a>
+                        </th>
+                        <th>Expiry Date</th>
+                        <th>Stock</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var m in Model)
+                    {
+                        <tr>
+                            <td>@m.Name</td>
+                            <td>@m.Company</td>
+                            <td>@m.Price</td>
+                            <td>@m.ExpiryDate.ToShortDateString()</td>
+                            <td>@m.Stock</td>
+                            <td>
+                                <a asp-action="AddEditMedicine" asp-route-id="@m.MedicineId" class="btn btn-warning btn-sm">Edit</a>
+                                <a asp-action="Delete" asp-route-id="@m.MedicineId" class="btn btn-danger btn-sm">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination -->
+        <nav>
+            <ul class="pagination justify-content-center flex-wrap">
+                @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                {
+                    <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                        <a asp-action="Medicines"
+                           asp-route-page="@i"
+                           asp-route-sortOrder="@ViewBag.SortOrder"
+                           asp-route-search="@ViewBag.Search"
+                           class="page-link">
+                            @i
+                        </a>
+                    </li>
+                }
+            </ul>
+        </nav>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "LoginHistory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="container mt-5">
+    <div class="text-end mt-4">
+        <h2 class="text-center mb-4">User Login History List</h2>
+    </div>
+
+    <div class="card shadow-lg p-4">
+        <!-- Responsive Table -->
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th>Provider</th>
+                        <th>Action</th>
+                        <th>IP Address</th>
+                        <th>Action Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var log in Model)
+                    {
+                        <tr>
+                            <td>@log.UserEmail</td>
+                            <td>@log.Provider</td>
+                            <td>@log.ActionType</td>
+                            <td>@log.IpAddress</td>
+                            <td>@log.ActionTime.ToString("dd-MMM-yyyy HH:mm:ss")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="text-end mt-4">
+            <a href="index" class="btn btn-outline-primary btn-sm">⬅ Back to Dashboard</a>
+        </div>
+    </div>
+</div>
+
